@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114705531978031096}
   m_Layer: 0
   m_Name: bullet005.0001
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seconds: 1
+  damage: 1
 --- !u!212 &212423959137909722
 SpriteRenderer:
   m_ObjectHideFlags: 1

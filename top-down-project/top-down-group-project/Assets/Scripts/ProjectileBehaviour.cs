@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProjectileBehaviour : MonoBehaviour
 {
-    public float seconds = 8;
+    public float seconds;
+    public float damage;
 
     void Start()
     {
