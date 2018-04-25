@@ -12,8 +12,9 @@ public class Health : MonoBehaviour {
     public Sprite heartFull;
     public Sprite heartEmpty;
 
-    void Start () {
-		
+    void Start ()
+    {
+        health = 8;
 	}
 	
 	
@@ -46,6 +47,14 @@ public class Health : MonoBehaviour {
                 hearts[i].enabled = false;
             }
         }
-    
+
 	}
+
+  //  private void OnTriggerEnter2D(Collider2D collision)
+   // {
+    //    if (collision.transform.tag == "damageGround")
+      //  {
+        //    health -= 1;
+     //   }
+    //}
 }
