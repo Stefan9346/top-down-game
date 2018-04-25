@@ -2,27 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamagingGround : MonoBehaviour {
+public class DamagingGround : MonoBehaviour
+{
 
 
 
 
 
-	void Start () {
-		
-	}
-	
+    void Start()
+    {
 
-	void Update () {
-		
-	}
-    
+    }
+
+
+    void Update()
+    {
+
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             collision.gameObject.GetComponent<Health>().health -= 1;
+
         }
     }
+
 }
+
