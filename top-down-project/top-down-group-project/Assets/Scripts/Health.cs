@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
@@ -26,6 +27,11 @@ public class Health : MonoBehaviour {
             health = numOfHearts;
         }
 
+        if(health < 1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
 
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -49,6 +55,9 @@ public class Health : MonoBehaviour {
         }
 
 	}
+
+
+
 
   //  private void OnTriggerEnter2D(Collider2D collision)
    // {

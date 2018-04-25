@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
+    public Projectile proj;
+
+
     Animator myanim;
 
 
@@ -13,6 +16,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myanim = GetComponent<Animator>();
+
+        proj = gameObject.GetComponent<Projectile>();
     }
 
 
@@ -26,6 +31,9 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_up", false);
             myanim.SetBool("walking_down", false);
             myanim.SetBool("walking_left", false);
+
+            proj.velocity = new Vector2(5, 0f);
+
         }
 
         //Left
@@ -36,6 +44,8 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_up", false);
             myanim.SetBool("walking_down", false);
             myanim.SetBool("walking_right", false);
+
+            proj.velocity = new Vector2(-5, 0f);
         }
 
         //Down
@@ -46,6 +56,8 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_up", false);
             myanim.SetBool("walking_right", false);
             myanim.SetBool("walking_left", false);
+
+            proj.velocity = new Vector2(0f, -5f);
         }
 
         //Up
@@ -57,6 +69,7 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_left", false);
             myanim.SetBool("walking_down", false);
 
+            proj.velocity = new Vector2(0f, 5f);
         }
     }
 }
