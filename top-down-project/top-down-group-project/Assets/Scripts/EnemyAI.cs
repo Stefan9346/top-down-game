@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour
+{
 
 
     public float health;
@@ -11,27 +12,25 @@ public class EnemyAI : MonoBehaviour {
 
     private SpriteRenderer sp;
 
-
-
-	void Start ()
+    void Start()
     {
         sp = GetComponent<SpriteRenderer>();
-	}
-	
-	
-	void Update ()
+    }
+
+
+    void Update()
     {
-		if(health <= 0)
+        if (health <= 0)
         {
             Destroy(this.gameObject);
         }
-	}
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Projectile")
         {
-           ProjectileBehaviour projBehaviour = collision.gameObject.GetComponent<ProjectileBehaviour>();
+            ProjectileBehaviour projBehaviour = collision.gameObject.GetComponent<ProjectileBehaviour>();
             health -= projBehaviour.damage;
             Destroy(projBehaviour.gameObject);
         }
