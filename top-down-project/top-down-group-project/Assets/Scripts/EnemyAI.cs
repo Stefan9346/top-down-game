@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
 
     public float health;
     public float damage;
+    public Color damagedColor;
 
 
     private SpriteRenderer sp;
@@ -26,12 +27,21 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private IEnumerator Waiter()
+    {
+        yield return new WaitForSeconds(0.225f);
+
+        sp.color = new Color(1.000f, 1.000f, 1.000f);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Projectile")
         {
             ProjectileBehaviour projBehaviour = collision.gameObject.GetComponent<ProjectileBehaviour>();
             health -= projBehaviour.damage;
+            sp.color = damagedColor;
+            StartCoroutine(Waiter());
             Destroy(projBehaviour.gameObject);
         }
     }
