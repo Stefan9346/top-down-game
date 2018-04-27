@@ -7,7 +7,11 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
     public Projectile proj;
-    
+
+
+    private string tpDir;
+    private float tpCD = 2.5f;
+    private bool canTP = true;
 
 
     Animator myanim;
@@ -19,6 +23,7 @@ public class PlayerController : MonoBehaviour
         myanim = GetComponent<Animator>();
 
         proj = gameObject.GetComponent<Projectile>();
+        tpDir = "Down";
     }
 
 
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_up", false);
             myanim.SetBool("walking_down", false);
             myanim.SetBool("walking_left", false);
+            tpDir = "Right";
 
             proj.velocity = new Vector2(5, 0f);
 
@@ -45,6 +51,8 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_up", false);
             myanim.SetBool("walking_down", false);
             myanim.SetBool("walking_right", false);
+            tpDir = "Left";
+
 
             proj.velocity = new Vector2(-5, 0f);
         }
@@ -57,6 +65,7 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_up", false);
             myanim.SetBool("walking_right", false);
             myanim.SetBool("walking_left", false);
+            tpDir = "Down";
 
             proj.velocity = new Vector2(0f, -5f);
         }
@@ -69,8 +78,51 @@ public class PlayerController : MonoBehaviour
             myanim.SetBool("walking_right", false);
             myanim.SetBool("walking_left", false);
             myanim.SetBool("walking_down", false);
+            tpDir = "Up";
 
             proj.velocity = new Vector2(0f, 5f);
         }
+
+
+        if (Input.GetKeyDown(KeyCode.F) && canTP)
+        {
+            tp();
+            StartCoroutine(CanTP());
+        }
+
+
+
     }
+
+    IEnumerator CanTP()
+    {
+        canTP = false;
+        yield return new WaitForSeconds(tpCD);
+        canTP = true;
+    }
+    
+
+    private void tp()
+    {
+        if (tpDir.Equals("Up"))
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + 5);
+        }
+
+        if (tpDir.Equals("Down"))
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y - 5);
+        }
+
+        if (tpDir.Equals("Left"))
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x -5, transform.localPosition.y );
+        }
+
+        if (tpDir.Equals("Right"))
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x +5, transform.localPosition.y);
+        }
+    }
+
 }
