@@ -1,16 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SkillCoolDown : MonoBehaviour {
+public class SkillCoolDown : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+
+
+    public float cooldown;
+    public Image skillIcon;
+    [HideInInspector]
+    public float currentDoolDown;
+
+
+
+    void Start()
+    {
+
+    }
+
+
+    void FixedUpdate()
+    {
+
+    }
 }
