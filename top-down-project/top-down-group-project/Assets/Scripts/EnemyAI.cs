@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     public Color damagedColor;
     public Transform target;
     public float speed = 3f;
+    public float chaseRange;
 
 
     private SpriteRenderer sp;
@@ -18,16 +19,39 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
+
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
     }
 
+
+    
 
     void Update()
     {
 
-        if (Vector2.Distance(transform.position, target.position) > 1)
+        //if (Vector2.Distance(transform.position, target.position) > 1)
+        //{
+
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        if (distanceToTarget < chaseRange)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
+
+
+
+        //float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        //if (distanceToTarget < chaseRange)
+        //{
+        //    Vector3 targetDir = target.position - transform.position;
+        //    float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
+        //    Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180);
+
+        //    transform.Translate(Vector3.up * Time.deltaTime * speed);
+        //}
+
+
 
 
 
@@ -35,7 +59,18 @@ public class EnemyAI : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        
+   
+    
     }
+
+
+
+
+
+
+
 
     private IEnumerator Waiter()
     {
