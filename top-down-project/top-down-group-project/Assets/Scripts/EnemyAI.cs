@@ -9,6 +9,8 @@ public class EnemyAI : MonoBehaviour
     public float health;
     public float damage;
     public Color damagedColor;
+    public Transform target;
+    public float speed = 3f;
 
 
     private SpriteRenderer sp;
@@ -21,6 +23,14 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+
+        if (Vector2.Distance(transform.position, target.position) > 1)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }
+
+
+
         if (health <= 0)
         {
             Destroy(this.gameObject);
