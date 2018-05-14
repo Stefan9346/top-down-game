@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
 
 
     private SpriteRenderer sp;
+    private bool foundPlayer = false;
 
     void Start()
     {
@@ -29,30 +30,19 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
 
-        //if (Vector2.Distance(transform.position, target.position) > 1)
-        //{
+        
 
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
         if (distanceToTarget < chaseRange)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            foundPlayer = true;
+            //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
 
-
-
-        //float distanceToTarget = Vector3.Distance(transform.position, target.position);
-        //if (distanceToTarget < chaseRange)
-        //{
-        //    Vector3 targetDir = target.position - transform.position;
-        //    float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
-        //    Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180);
-
-        //    transform.Translate(Vector3.up * Time.deltaTime * speed);
-        //}
-
-
-
+        if (foundPlayer)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }
 
 
         if (health <= 0)
