@@ -93,7 +93,7 @@ public class EnemySpawner : MonoBehaviour {
         if (searchCountdown <= 0f)
         {
             searchCountdown = 1f;
-            if(GameObject.FindGameObjectWithTag("Enemy") == null)
+            if(GameObject.FindGameObjectsWithTag("Enemy") == null)
             {
                 return false;
             }

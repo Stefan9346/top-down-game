@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     void OnEnable()
     {
         sp = GetComponent<SpriteRenderer>();
-        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        //float distanceToTarget = Vector3.Distance(transform.position, target.position);
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
