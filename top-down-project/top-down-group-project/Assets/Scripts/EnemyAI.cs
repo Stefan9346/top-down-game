@@ -17,11 +17,11 @@ public class EnemyAI : MonoBehaviour
     private SpriteRenderer sp;
     private bool foundPlayer = false;
 
-    void Start()
+    void OnEnable()
     {
         sp = GetComponent<SpriteRenderer>();
-
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 
