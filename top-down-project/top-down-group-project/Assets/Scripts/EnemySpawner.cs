@@ -59,6 +59,8 @@ public class EnemySpawner : MonoBehaviour {
 
 		if(waveCountdown <= 0)
         {
+            Debug.Log("Is Counting Down");
+
             if(state != SpawnState.SPAWNING)
             {
                 StartCoroutine( SpawnWave ( waves[nextWave] ) );
