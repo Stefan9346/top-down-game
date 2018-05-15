@@ -19,10 +19,12 @@ public class EnemySpawner : MonoBehaviour {
 
     public Wave[] waves;
     private int nextWave = 0;
-
+    public Transform[] spawnPoints;
     public float timeBetweenWaves = 5f;
-    public float waveCountdown;
 
+
+    private float waveCountdown;
+    private float searchCountdown = 1f;
     private SpawnState state = SpawnState.COUNTING;
 
 
@@ -30,13 +32,31 @@ public class EnemySpawner : MonoBehaviour {
 	void Start ()
     {
         waveCountdown = timeBetweenWaves;
-	}
+
+        if (spawnPoints.Length == 0)
+        {
+            Debug.Log("No Spawn points referenced");
+        }
+    }
 	
 
 
 
 	void Update ()
     {
+
+        if(state == SpawnState.WAITING)
+        {
+            if (!EnemyIsAlive())
+            {
+                WaveCompleted();
+            }
+            else
+            {
+                return;
+            }
+        }
+
 		if(waveCountdown <= 0)
         {
             if(state != SpawnState.SPAWNING)
@@ -50,6 +70,38 @@ public class EnemySpawner : MonoBehaviour {
             waveCountdown -= Time.deltaTime;
         }
 	}
+
+    void WaveCompleted()
+    {
+        state = SpawnState.COUNTING;
+        waveCountdown = timeBetweenWaves;
+
+        if (nextWave + 1 > waves.Length - 1)
+        {
+            nextWave = 0;
+        }
+        else
+        {
+            nextWave++;
+        }
+    }
+
+
+    bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+        if (searchCountdown <= 0f)
+        {
+            searchCountdown = 1f;
+            if(GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                return false;
+            }
+
+        }
+        return true;
+    }
+
 
     IEnumerator SpawnWave(Wave _wave)
     {
@@ -69,8 +121,11 @@ public class EnemySpawner : MonoBehaviour {
 
     void SpawnEnemy(Transform _enemy)
     {
-        // Spawn Enemy
         Debug.Log("Spawning Enemy: " + _enemy.name);
+
+        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(_enemy, _sp.position, _sp.rotation);
+       
     }
 
 }
