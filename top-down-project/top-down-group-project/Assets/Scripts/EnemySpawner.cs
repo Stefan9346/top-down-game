@@ -59,7 +59,6 @@ public class EnemySpawner : MonoBehaviour {
 
 		if(waveCountdown <= 0)
         {
-            Debug.Log("Is Counting Down");
 
             if(state != SpawnState.SPAWNING)
             {
@@ -71,6 +70,8 @@ public class EnemySpawner : MonoBehaviour {
         {
             waveCountdown -= Time.deltaTime;
         }
+
+        EnemyIsAlive();
 	}
 
     void WaveCompleted()
@@ -91,17 +92,15 @@ public class EnemySpawner : MonoBehaviour {
 
     bool EnemyIsAlive()
     {
-        searchCountdown -= Time.deltaTime;
-        if (searchCountdown <= 0f)
-        {
-            searchCountdown = 1f;
-            if(GameObject.FindGameObjectsWithTag("Enemy") == null)
-            {
-                return false;
-            }
 
+
+        if (GameObject.FindGameObjectWithTag("Enemy") == null)
+        {
+            return false;
         }
+
         return true;
+
     }
 
 
