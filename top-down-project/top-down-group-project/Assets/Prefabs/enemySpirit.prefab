@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a9bbaac4a4c2445a88c9c0a4e87669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   damage: 2
   damagedColor: {r: 1, g: 0, b: 0, a: 1}
   target: {fileID: 0}

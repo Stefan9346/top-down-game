@@ -45,6 +45,11 @@ public class EnemySpawner : MonoBehaviour {
 	void Update ()
     {
 
+        if(nextWave > waves.Length)
+        {
+            Debug.Log("ifree");
+        }
+
         if(state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
@@ -81,6 +86,7 @@ public class EnemySpawner : MonoBehaviour {
 
         if (nextWave + 1 > waves.Length - 1)
         {
+            //Change nextWave = 0; to whatever you want to happen AFTER waves are done
             nextWave = 0;
         }
         else
