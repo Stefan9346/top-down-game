@@ -13,9 +13,17 @@ public class Health : MonoBehaviour {
     public Sprite heartFull;
     public Sprite heartEmpty;
 
+    
+
+    private AudioSource audiomanager;
+    public AudioClip[] audioclips;
+
+
     void Start ()
     {
-        health = 8;
+        health = 5;
+        audiomanager = GetComponent<AudioSource>();
+        
 	}
 	
 	
@@ -29,8 +37,11 @@ public class Health : MonoBehaviour {
 
         if(health < 1)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            PlayerDead();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
         }
+
 
 
         for (int i = 0; i < hearts.Length; i++)
@@ -53,6 +64,23 @@ public class Health : MonoBehaviour {
                 hearts[i].enabled = false;
             }
         }
-
 	}
+
+
+    private void PlayerDead()
+    {
+        audiomanager.clip = audioclips[1];
+        audiomanager.Play();
+
+    }
+ 
+
+    private void TakeDamage()
+    {
+        health--;
+        audiomanager.clip = audioclips[0];
+        audiomanager.Play();
+    }
+
+
 }

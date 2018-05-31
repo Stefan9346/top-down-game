@@ -22,23 +22,24 @@ public class DamagingGround : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            InvokeRepeating("DealDamage", 0.125f, time);
+            //InvokeRepeating("DealDamage", 0.125f, time);
+            healthScript.InvokeRepeating("TakeDamage", 0.125f, time);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {
-            CancelInvoke();
+        {   
+            healthScript.CancelInvoke();
         }
     }
 
 
-    private void DealDamage()
-    {
-        healthScript.health--;
-    }
+    //private void DealDamage()
+    //{
+    //    healthScript.health--;
+    //}
 
 }
 
