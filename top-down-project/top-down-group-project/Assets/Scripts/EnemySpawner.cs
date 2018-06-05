@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour {
 		if(waveCountdown <= 0)
         {
 
-            if (state != SpawnState.SPAWNING)
+            if (state != SpawnState.SPAWNING && nextWave < 3)
             {
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
@@ -92,7 +92,10 @@ public class EnemySpawner : MonoBehaviour {
             //Change to whatever you want to happen AFTER waves are done
             door.SetActive(true);
             nextWave++;
+            StopCoroutine(SpawnWave(waves[nextWave-1]));
             return;
+            
+
         }
         else
         {

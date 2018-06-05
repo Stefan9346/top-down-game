@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.F) && canTP)
+        if (Input.GetKey(KeyCode.LeftControl)&& Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.X)&& Input.GetKey(KeyCode.O) && canTP)
         {
             tp();
             StartCoroutine(CanTP());
