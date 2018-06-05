@@ -37,11 +37,9 @@ public class Health : MonoBehaviour {
 
         if(health < 1)
         {
-            PlayerDead();
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Invoke("LoadNextLevel", 1.0f);
             
         }
-
 
 
         for (int i = 0; i < hearts.Length; i++)
@@ -69,18 +67,33 @@ public class Health : MonoBehaviour {
 
     private void PlayerDead()
     {
-        audiomanager.clip = audioclips[1];
-        audiomanager.Play();
+        PlayerSound(1);
 
+        //audiomanager.clip = audioclips[1];
+        //audiomanager.Play();
     }
  
 
     private void TakeDamage()
     {
         health--;
-        audiomanager.clip = audioclips[0];
-        audiomanager.Play();
+        PlayerSound(0);
+
+        //audiomanager.clip = audioclips[0];
+        //audiomanager.Play();
     }
 
+
+    private void LoadNextLevel()
+    {
+        PlayerDead();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void PlayerSound(int soundNumber)
+    {
+        audiomanager.clip = audioclips[soundNumber];
+        audiomanager.Play();
+    }
 
 }
