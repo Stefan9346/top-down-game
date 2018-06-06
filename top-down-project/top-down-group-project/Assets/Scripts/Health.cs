@@ -13,7 +13,9 @@ public class Health : MonoBehaviour {
     public Sprite heartFull;
     public Sprite heartEmpty;
 
-    
+
+
+    public GameManager gm;
 
     private AudioSource audiomanager;
     public AudioClip[] audioclips;
@@ -25,7 +27,7 @@ public class Health : MonoBehaviour {
     {
         health = 5;
         audiomanager = GetComponent<AudioSource>();
-        hasDied = false;     
+        hasDied = false;
 	}
 	
 	
@@ -76,7 +78,7 @@ public class Health : MonoBehaviour {
     //}
  
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         health--;
 
@@ -88,7 +90,8 @@ public class Health : MonoBehaviour {
         if(health <= 0 && !hasDied)
         {
             audiomanager.PlayOneShot(audioclips[1]);
-            Invoke("LoadNextLevel", 1.0f);
+            //Invoke("LoadNextLevel", 1.0f);
+            gm.GameOverTryAgain();
             hasDied = true;
         }
 
@@ -101,11 +104,11 @@ public class Health : MonoBehaviour {
     }
 
 
-    private void LoadNextLevel()
-    {
-        //PlayerDead();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    //private void LoadNextLevel()
+    //{
+    //    //PlayerDead();
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 
     //private void PlayerSound(int soundNumber)
     //{

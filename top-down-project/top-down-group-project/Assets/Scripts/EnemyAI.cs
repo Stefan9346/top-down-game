@@ -78,7 +78,8 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             health = -1;
-            target.gameObject.GetComponent<Health>().health--;
+            target.gameObject.GetComponent<Health>().TakeDamage();
+
         }
     }
 
