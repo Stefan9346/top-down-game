@@ -79,5 +79,13 @@ public class EnemyAI : MonoBehaviour
             StartCoroutine(Waiter());
             Destroy(projBehaviour.gameObject);
         }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            health = -1;
+            target.gameObject.GetComponent<Health>().health--;
+        }
     }
+
+   
 }
