@@ -88,7 +88,7 @@ public class Health : MonoBehaviour {
         if(health <= 0 && !hasDied)
         {
             audiomanager.PlayOneShot(audioclips[1]);
-            Invoke("LoadNextLevel", 1.7f);
+            Invoke("LoadNextLevel", 1.0f);
             hasDied = true;
         }
 

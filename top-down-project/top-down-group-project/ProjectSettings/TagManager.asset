@@ -7,6 +7,7 @@ TagManager:
   - damageGround
   - Enemy
   - Projectile
+  - Door
   layers:
   - Default
   - TransparentFX
