@@ -57,11 +57,6 @@ public class EnemyAI : MonoBehaviour
 
 
 
-
-
-
-
-
     private IEnumerator Waiter()
     {
         yield return new WaitForSeconds(0.225f);

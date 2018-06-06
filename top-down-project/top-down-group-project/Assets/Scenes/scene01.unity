@@ -1650,15 +1650,15 @@ MonoBehaviour:
   waves:
   - name: Wave One
     enemy: {fileID: 4748504413437446, guid: ace9138e54b75f146b60d67d9fbf0a74, type: 2}
-    count: 1
+    count: 15
     rate: 1
   - name: Wave Two
     enemy: {fileID: 4748504413437446, guid: ace9138e54b75f146b60d67d9fbf0a74, type: 2}
-    count: 2
+    count: 25
     rate: 1.5
   - name: Wave Three
     enemy: {fileID: 4748504413437446, guid: ace9138e54b75f146b60d67d9fbf0a74, type: 2}
-    count: 3
+    count: 45
     rate: 1.5
   spawnPoints:
   - {fileID: 627775575}
